@@ -47,6 +47,12 @@ export const HOOKS: HookKey[] = [
 export type Plugin<E = {}> = (fp: Instance & E) => Options;
 
 export interface BaseOptions {
+
+  /*
+  Allows the user to clear the active field by pressing backspace or delete. By default, clearing is enabled.
+  */
+  allowClearing: boolean;
+
   /*
   Allows the user to enter a date directly input the input field. By default, direct entry is disabled.
   */
@@ -277,6 +283,7 @@ export interface ParsedOptions {
   _maxTime?: Date;
   _minDate?: Date;
   _minTime?: Date;
+  allowClearing: boolean;
   allowInput: boolean;
   allowInvalidPreload: boolean;
   altFormat: string;
@@ -347,6 +354,7 @@ export const defaults: ParsedOptions = {
   allowInvalidPreload: false,
   altFormat: "F j, Y",
   altInput: false,
+  allowClearing: true,
   altInputClass: "form-control input",
   animate:
     typeof window === "object" &&
